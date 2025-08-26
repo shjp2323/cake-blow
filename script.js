@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // اضافه کردن شمع‌ها روی سطح کیک به شکل بیضی کشیده
   for (let i = 0; i < numCandles; i++) {
     const angle = (i / numCandles) * 2 * Math.PI;
-    const x = centerX + radiusX * Math.cos(angle) - 6; // 6 نصف عرض شمع
-    const y = centerY + radiusY * Math.sin(angle) - 20; // روی سطح کیک
+    const x = centerX + radiusX * Math.cos(angle) - 6;
+    const y = centerY + radiusY * Math.sin(angle) - 20;
 
     const candle = document.createElement("div");
     candle.className = "candle";
@@ -72,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
     return average > 40;
   }
 
-  // خاموش کردن همه شمع‌ها وقتی فوت می‌کنیم
+  // خاموش شدن تصادفی شمع‌ها وقتی فوت می‌کنیم
   function blowOutCandles() {
     if (!analyser) return;
     if (isBlowing()) {
       candles.forEach((candle) => {
-        if (!candle.classList.contains("out")) {
+        if (!candle.classList.contains("out") && Math.random() < 0.4) { // 40٪ احتمال خاموش شدن
           candle.classList.add("out");
           const flame = candle.querySelector(".flame");
           if (flame) flame.style.display = "none"; // خاموش کردن شعله
