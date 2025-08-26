@@ -11,46 +11,40 @@ body {
 /* متن بالا */
 .title {
   font-size: 2em;
-  color: #4682B4; /* هم‌رنگ کیک */
+  color: #4682B4;
   margin-bottom: 40px;
   text-align: center;
+  position: relative;
 }
 
 /* کیک */
 .cake-container {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; /* پایین‌ترین لایه در پایین */
   align-items: center;
 }
 
 .cake {
-  background: #4682B4; /* آبی مات */
+  background: #4682B4;
   border-radius: 50% / 20%;
   box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-  margin: 0;
-}
-
-.layer-top {
-  width: 120px;
-  height: 80px;
-  z-index: 3;
-}
-
-.layer-middle {
-  width: 180px;
-  height: 100px;
-  z-index: 2;
-}
-
-.layer-bottom {
-  width: 240px;
-  height: 120px;
+  margin: 0; /* فاصله بین لایه‌ها صفر */
+  position: relative;
   z-index: 1;
 }
 
-/* شمع */
+.layer-top { width: 120px; height: 80px; z-index: 3; }
+.layer-middle { width: 180px; height: 100px; z-index: 2; }
+.layer-bottom { width: 240px; height: 120px; z-index: 1; }
+
+/* شمع‌ها */
 .candles {
-  margin-top: 20px;
+  position: absolute;
+  top: -40px; /* دقیقاً روی لایه بالا */
+  display: flex;
+  justify-content: space-between;
+  width: 120px; /* هم‌اندازه با layer-top */
 }
 
 .candle {
@@ -59,14 +53,12 @@ body {
   background: silver;
   position: relative;
   display: inline-block;
-  margin: 0 12px; /* فاصله بین شمع‌ها */
-  vertical-align: top;
 }
 
 .flame {
   width: 14px;
   height: 18px;
-  background: radial-gradient(circle, #FFFACD, #FFDAB9); /* زرد خیلی کمرنگ */
+  background: radial-gradient(circle, #FFFACD, #FFDAB9);
   border-radius: 50%;
   position: absolute;
   top: -22px;
