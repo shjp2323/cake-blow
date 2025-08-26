@@ -14,15 +14,56 @@ body {
   font-size: 4em;
   color: #4682B4;
   text-align: center;
-  margin-bottom: 20px;
-  position: relative;
+  margin-bottom: 10px; /* فاصله کمتر با کیک */
   line-height: 1.2;
+  position: relative;
 }
 
-/* شمع‌ها روی لایه بالایی */
+/* کیک بزرگ تقریبا کل صفحه */
+.cake-container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 70vh;
+}
+
+.cake {
+  background: #4682B4; /* آبی کیک */
+  border-radius: 50% / 20%;
+  position: relative;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* لایه خامه‌ای آب شده */
+.cream-layer {
+  width: 90%;
+  height: 25px;
+  background: #FFF5E1; /* کرم رنگ */
+  border-radius: 50% / 50%;
+  position: absolute;
+  top: 10px;
+  box-shadow: inset 0 0 10px #fff;
+  animation: drip 3s infinite ease-in-out;
+}
+
+@keyframes drip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px) rotate(2deg); }
+}
+
+/* اندازه لایه‌ها بزرگ‌تر */
+.layer-top { width: 250px; height: 150px; z-index: 3; }
+.layer-middle { width: 350px; height: 180px; z-index: 2; }
+.layer-bottom { width: 500px; height: 220px; z-index: 1; }
+
+/* شمع‌ها روی کیک و زیر نوشته */
 .candles {
   position: absolute;
-  top: -60px; /* روی لایه بالایی */
+  top: 40px; /* پایین‌تر از سطح لایه بالا */
   display: flex;
   justify-content: space-between;
   width: 200px; /* هم‌اندازه با layer-top */
@@ -52,37 +93,3 @@ body {
   from { transform: scale(1); opacity: 1; }
   to { transform: scale(1.1); opacity: 0.85; }
 }
-
-/* کیک بزرگ تقریبا کل صفحه */
-.cake-container {
-  position: relative;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  height: 70vh;
-}
-
-.cake {
-  background: #4682B4; /* آبی */
-  border-radius: 50% / 20%;
-  position: relative;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* لایه خامه‌ای */
-.cream-layer {
-  width: 90%;
-  height: 20px;
-  background: #FFF5E1; /* کرم رنگ */
-  border-radius: 50% / 50%;
-  position: absolute;
-  top: 10px;
-}
-
-/* اندازه لایه‌ها بزرگ‌تر */
-.layer-top { width: 250px; height: 150px; z-index: 3; }
-.layer-middle { width: 350px; height: 180px; z-index: 2; }
-.layer-bottom { width: 500px; height: 220px; z-index: 1; }
