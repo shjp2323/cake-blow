@@ -1,94 +1,177 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const cake = document.querySelector(".cake");
-  const candleCountDisplay = document.getElementById("candleCount");
-  let candles = [];
-  let audioContext;
-  let analyser;
-  let microphone;
+body {
+  background-color: #333;
+  text-align: center;
+}
 
-  function updateCandleCount() {
-    const activeCandles = candles.filter(
-      (candle) => !candle.classList.contains("out")
-    ).length;
-    candleCountDisplay.textContent = activeCandles;
-  }
+.greeting {
+  margin-top: 30px;
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px #000;
+}
 
-  function addCandle(left, top) {
-    const candle = document.createElement("div");
-    candle.className = "candle";
-    candle.style.left = left + "px";
-    candle.style.top = top + "px";
+.candle-count-display {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 20px;
+  color: #004080;
+  background-color: #e0f0ff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid #0059b3;
+}
 
-    const flame = document.createElement("div");
-    flame.className = "flame";
-    candle.appendChild(flame);
+.candle-count-display span {
+  font-weight: bold;
+  color: #00264d;
+}
 
-    cake.appendChild(candle);
-    candles.push(candle);
-    updateCandleCount();
-  }
+.cake {
+  position: absolute;
+  width: 250px;
+  height: 200px;
+  top: 55%;
+  left: 50%;
+  margin-top: -70px;
+  margin-left: -125px;
+}
 
-  // 🔥 از اول 27 شمع بساز
-  function placeCandles() {
-    const centerX = 125; // مرکز کیک (نصف عرض 250px)
-    const topY = -10; // بالای لایه
-    const radius = 80; // شعاع دایره شمع‌ها
-    const count = 27;
+.plate {
+  width: 270px;
+  height: 110px;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
+}
 
-    for (let i = 0; i < count; i++) {
-      const angle = (i / count) * 2 * Math.PI;
-      const x = centerX + radius * Math.cos(angle);
-      const y = topY + radius * Math.sin(angle) * 0.3; // بیضوی بشه
-      addCandle(x, y);
-    }
-  }
+.cake > * {
+  position: absolute;
+}
 
-  placeCandles();
+.layer {
+  position: absolute;
+  display: block;
+  width: 250px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #0073e6;
+  box-shadow: 0 2px 0px #0059b3, 0 4px 0px #004080, 0 6px 0px #003366;
+}
 
-  function isBlowing() {
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-    analyser.getByteFrequencyData(dataArray);
+.layer-top {
+  top: 0px;
+}
 
-    let sum = 0;
-    for (let i = 0; i < bufferLength; i++) {
-      sum += dataArray[i];
-    }
-    let average = sum / bufferLength;
+.layer-middle {
+  top: 33px;
+}
 
-    return average > 40;
-  }
+.layer-bottom {
+  top: 66px;
+}
 
-  function blowOutCandles() {
-    let blownOut = 0;
+.icing {
+  top: 2px;
+  left: 5px;
+  background-color: #ffffff;
+  width: 240px;
+  height: 90px;
+  border-radius: 50%;
+}
+.icing:before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  bottom: 6px;
+  left: 5px;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  z-index: 1;
+}
 
-    if (isBlowing()) {
-      candles.forEach((candle) => {
-        if (!candle.classList.contains("out") && Math.random() > 0.5) {
-          candle.classList.add("out");
-          blownOut++;
-        }
-      });
-    }
+.drip {
+ display: block;
+  width: 50px;
+  height: 60px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: #ffffff; 
+}
 
-    if (blownOut > 0) {
-      updateCandleCount();
-    }
-  }
+.drip1 {
+  top: 53px;
+  left: 5px;
+  transform: skewY(15deg);
+  height: 48px;
+  width: 40px;
+}
 
-  if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then(function (stream) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioContext.createAnalyser();
-        microphone = audioContext.createMediaStreamSource(stream);
-        microphone.connect(analyser);
-        analyser.fftSize = 256;
-        setInterval(blowOutCandles, 200);
-      })
-      .catch(function (err) {
-        console.log("Unable to access microphone: " + err);
-      });
-  }
-});
+.drip2 {
+  top: 69px;
+  left: 181px;
+  transform: skewY(-15deg);
+}
+
+.drip3 {
+  top: 54px;
+  left: 90px;
+  width: 80px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.candle {
+  background-color: silver;
+  width: 12px;
+  height: 35px;
+  border-radius: 6px/3px;
+  top: -20px;
+  z-index: 10;
+}
+.candle:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+}
+
+.candle.out .flame {
+  display: none;
+}
+
+.flame {
+  position: absolute;
+  background-color: orange;
+  width: 10px;
+  height: 25px;
+  border-radius: 8px 8px 8px 8px/20px 20px 8px 8px;
+  top: -34px;
+  left: 50%;
+  margin-left: -7.5px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
+  transform-origin: 50% 90%;
+  animation: flicker 1s ease-in-out alternate infinite;
+}
+
+@keyframes flicker {
+  0% { transform: skewX(5deg); }
+  25% { transform: skewX(-5deg); }
+  50% { transform: skewX(10deg); }
+  75% { transform: skewX(-10deg); }
+  100% { transform: skewX(5deg); }
+}
