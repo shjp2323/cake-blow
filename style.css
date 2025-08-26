@@ -1,26 +1,8 @@
-body {
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: sans-serif;
-}
-
 .title {
     font-size: 2em;
-    color: #1E90FF;
-    margin-bottom: 30px;
+    color: #4682B4; /* هم‌رنگ کیک */
+    margin-bottom: 60px; /* فاصله بیشتر از کیک */
     text-align: center;
-}
-
-.cake-stack {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .cake {
@@ -31,44 +13,23 @@ body {
     position: relative;
 }
 
-.layer-top {
-    width: 120px;
-    height: 60px;
-    z-index: 3;
-}
-.layer-middle {
-    width: 180px;
-    height: 80px;
-    z-index: 2;
-}
-.layer-bottom {
-    width: 250px;
-    height: 100px;
-    z-index: 1;
-}
-
 .candle {
     width: 10px;
     height: 40px;
     background: silver;
-    border-radius: 2px;
-    position: absolute;
-    top: -40px;
+    position: relative;
+    display: inline-block;
+    margin: 0 12px; /* 🔹 فاصله بین شمع‌ها */
+    vertical-align: top;
 }
 
 .flame {
     width: 14px;
     height: 18px;
-    background: radial-gradient(circle, #FFFFE0, #FFD700); /* زرد کمرنگ */
+    background: radial-gradient(circle, #FFFACD, #FFDAB9); /* زرد خیلی کمرنگ */
     border-radius: 50%;
     position: absolute;
     top: -22px;
     left: -2px;
     animation: flicker 0.25s infinite alternate;
-}
-
-@keyframes flicker {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
-    100% { transform: scale(1) rotate(-2deg); opacity: 1; }
 }
