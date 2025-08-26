@@ -1,4 +1,4 @@
- const candlesContainer = document.querySelector('.candles');
+const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 const candleCount = 5;
 
