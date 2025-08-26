@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
   const candles = [];
-  const numCandles = 7; // تعداد شمع‌ها
+  const numCandles = 10; // تعداد شمع‌ها
   const radius = 90; // شعاع دایره روی کیک
   const centerX = 125; // مرکز کیک (نصف عرض)
   const centerY = 50;  // ارتفاع شمع‌ها روی کیک
@@ -35,6 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateCandleCount();
 
+  // اضافه کردن متن پایین کیک
+  const blowText = document.createElement("div");
+  blowText.textContent = "Blow!";
+  blowText.style.textAlign = "center";
+  blowText.style.color = "black";
+  blowText.style.fontFamily = "Arial, sans-serif";
+  blowText.style.fontSize = "16px"; // کوچک نوشته شود
+  blowText.style.marginTop = "2cm"; // فاصله 2 سانت از کیک
+  cake.parentNode.insertBefore(blowText, cake.nextSibling);
+
+  // میکروفون برای فوت شمع
   let audioContext, analyser, microphone;
 
   function isBlowing() {
