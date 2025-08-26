@@ -1,120 +1,29 @@
-body {
-  background: #E6E6FA; /* یاسی کمرنگ */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-
-/* متن بالا */
+/* متن بالای کیک */
 .title {
+  text-align: center;
   font-size: 3.5em;
   color: #4682B4;
-  text-align: center;
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-
-/* ظرف کیک */
-.cake-container {
+  margin-bottom: 0px; /* فاصله خیلی کم با کیک */
+  line-height: 1.1; /* نزدیک‌تر شدن خطوط به هم */
   position: relative;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
 }
 
-/* لایه کیک */
-.cake {
-  background: #4682B4;
-  border-radius: 50% / 20%;
-  position: relative;
-  margin: -20px 0; /* چسبیده روی هم */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.layer-top { width: 250px; height: 150px; z-index: 3; }
-.layer-middle { width: 350px; height: 180px; z-index: 2; }
-.layer-bottom { width: 450px; height: 200px; z-index: 1; }
-
-/* خامه آب شده */
-.cream {
-  width: 100%;
-  height: 40px;
-  background: #FFF5E1;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  box-shadow: inset 0 0 10px #fff;
-}
-
-.cream::after {
-  content: "";
-  position: absolute;
-  left: 20%;
-  bottom: -20px;
-  width: 20px;
-  height: 40px;
-  background: #FFF5E1;
-  border-radius: 50%;
-  animation: drip 2s infinite;
-}
-
-@keyframes drip {
-  0%,100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(10px); opacity: 0.8; }
-}
-
-/* شمع‌ها */
+/* شمع‌ها روی کیک بالایی و کمی روی خامه */
 .candles {
   position: absolute;
-  top: 10px;
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
+  top: 18px; /* روی سطح کیک بالایی، پایین‌تر از متن ولی از خامه پایین‌تر نرود */
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
 }
 
+/* شمع‌ها حالت استوانه‌ای */
 .candle {
   width: 14px;
   height: 60px;
   background: silver;
+  border-radius: 7px; /* حالت استوانه‌ای */
   position: relative;
-}
-
-.flame {
-  width: 16px;
-  height: 20px;
-  background: radial-gradient(circle, #FFFACD, #FFDAB9);
-  border-radius: 50%;
-  position: absolute;
-  top: -25px;
-  left: -1px;
-  animation: flicker 0.25s infinite alternate;
-}
-
-@keyframes flicker {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(1.1); opacity: 0.85; }
-}
-
-/* نامه پایین صفحه */
-.letter {
-  background: #fff;
-  border: 2px solid #ccc;
-  border-radius: 10px 10px 0 0;
-  padding: 20px;
-  margin-top: 40px;
-  font-size: 1.5em;
-  color: #444;
-  text-align: center;
-  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-  width: 80%;
 }
