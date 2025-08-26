@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
 
-  // حذف شمع‌های قبلی (اگر وجود دارند)
-  const oldCandles = cake.querySelectorAll(".candle");
-  oldCandles.forEach(c => c.remove());
+  // حذف همه شمع‌ها و شعله‌های قبلی از روی کیک
+  const oldCandles = cake.querySelectorAll(".candle, .flame");
+  oldCandles.forEach(el => el.remove());
 
   const candles = [];
   const numCandles = 10; // تعداد شمع‌ها
