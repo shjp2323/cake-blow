@@ -1,12 +1,12 @@
-// تعداد شمع‌ها
+// تعداد کل شمع‌ها
 const totalCandles = 27;
 
-// موقعیت‌ها (دایره‌ای روی طبقه بالای کیک)
+// محاسبه موقعیت‌های دایره‌ای برای شمع‌ها
 function generateCandles() {
   const candles = [];
   const centerX = 150; // مرکز کیک
-  const centerY = 70;  // بالای لایه بالایی
-  const radius = 70;   // فاصله از مرکز
+  const centerY = 155; // بالای لایه‌ی بالایی
+  const radius = 60;   // فاصله شمع‌ها از مرکز
 
   for (let i = 0; i < totalCandles; i++) {
     const angle = (2 * Math.PI / totalCandles) * i;
@@ -17,6 +17,7 @@ function generateCandles() {
   return candles;
 }
 
+// ایجاد شمع‌ها روی کیک
 function createCandles() {
   const cake = document.querySelector('.cake');
   const candles = generateCandles();
@@ -31,12 +32,14 @@ function createCandles() {
     flame.classList.add('flame');
     candle.appendChild(flame);
 
+    // کلیک برای خاموش کردن شمع
     candle.addEventListener('click', () => {
-      flame.style.display = 'none'; // شمع خاموش میشه
+      candle.classList.add('off');
     });
 
     cake.appendChild(candle);
   });
 }
 
+// شمع‌ها هنگام بارگذاری ایجاد میشن
 window.onload = createCandles;
