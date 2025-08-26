@@ -1,7 +1,7 @@
 const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
-const candleCount = 3; // تغییر تعداد شمع‌ها به 3
+const candleCount = 3; // 3 شمع
 
 for (let i = 0; i < candleCount; i++) {
   const candle = document.createElement('div');
