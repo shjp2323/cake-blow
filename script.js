@@ -1,18 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
+
+  // حذف شمع‌های قبلی (اگر وجود دارند)
+  const oldCandles = cake.querySelectorAll(".candle");
+  oldCandles.forEach(c => c.remove());
+
   const candles = [];
   const numCandles = 10; // تعداد شمع‌ها
   const centerX = 125; // مرکز افقی کیک
   const centerY = 40;  // ارتفاع روی سطح کیک
-  const radiusX = 90;  // شعاع افقی بیضی
+  const radiusX = 110; // شعاع افقی بیضی (کشیده‌تر)
   const radiusY = 50;  // شعاع عمودی بیضی
 
-  // اضافه کردن شمع‌ها روی سطح کیک به شکل بیضی
+  // اضافه کردن شمع‌ها روی سطح کیک به شکل بیضی کشیده
   for (let i = 0; i < numCandles; i++) {
     const angle = (i / numCandles) * 2 * Math.PI;
-    const x = centerX + radiusX * Math.cos(angle) - 6; // 6 نصف عرض شمع
-    const y = centerY + radiusY * Math.sin(angle) - 20; // روی سطح کیک
+    const x = centerX + radiusX * Math.cos(angle) - 6;
+    const y = centerY + radiusY * Math.sin(angle) - 20;
 
     const candle = document.createElement("div");
     candle.className = "candle";
@@ -37,17 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCandleCount();
 
   // متن Blow! پایین صفحه
-  const blowText = document.createElement("div");
-  blowText.textContent = "Blow!";
-  blowText.style.position = "fixed";
-  blowText.style.bottom = "20px";
-  blowText.style.left = "50%";
-  blowText.style.transform = "translateX(-50%)";
-  blowText.style.fontSize = "48px"; // بزرگ
-  blowText.style.color = "black";
-  blowText.style.fontFamily = "Arial, sans-serif";
-  blowText.style.textAlign = "center";
-  document.body.appendChild(blowText);
+  let blowText = document.getElementById("blowText");
+  if (!blowText) {
+    blowText = document.createElement("div");
+    blowText.id = "blowText";
+    blowText.textContent = "Blow!";
+    blowText.style.position = "fixed";
+    blowText.style.bottom = "20px";
+    blowText.style.left = "50%";
+    blowText.style.transform = "translateX(-50%)";
+    blowText.style.fontSize = "48px"; // بزرگ
+    blowText.style.color = "black";
+    blowText.style.fontFamily = "Arial, sans-serif";
+    blowText.style.textAlign = "center";
+    document.body.appendChild(blowText);
+  }
 
   // میکروفون برای فوت شمع
   let audioContext, analyser, microphone;
