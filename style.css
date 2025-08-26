@@ -1,18 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Birthday Cake</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="cake">
-        <div class="plate"></div>
-        <div class="layer layer-bottom"></div>
-        <div class="layer layer-middle"></div>
-        <div class="layer layer-top"></div>
-    </div>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* کیک */
+.cake {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.plate {
+    width: 320px;
+    height: 20px;
+    background: #ccc;
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    border-radius: 10px;
+}
+
+.layer {
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.layer-bottom { background-color: #007BFF; top: 100px; }
+.layer-middle { background-color: #FFFFFF; top: 50px; }
+.layer-top { background-color: #007BFF; top: 0px; }
+
+/* شمع‌ها */
+.candle {
+    width: 10px;
+    height: 30px;
+    background-color: silver;
+    position: absolute;
+    border-radius: 2px;
+}
+
+/* شعله */
+.flame {
+    width: 6px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 2px;
+}
