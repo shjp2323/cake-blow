@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateCandleCount();
 
-  // متن Blow! پایین صفحه
+  // متن Blow! پایین صفحه با رنگ زرد
   let blowText = document.getElementById("blowText");
   if (!blowText) {
     blowText = document.createElement("div");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     blowText.style.left = "50%";
     blowText.style.transform = "translateX(-50%)";
     blowText.style.fontSize = "48px"; // بزرگ
-    blowText.style.color = "black";
+    blowText.style.color = "yellow"; // تغییر رنگ به زرد
     blowText.style.fontFamily = "Arial, sans-serif";
     blowText.style.textAlign = "center";
     document.body.appendChild(blowText);
