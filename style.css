@@ -9,71 +9,82 @@ body {
   margin: 0;
 }
 
-/* متن بالا دوخطی و بزرگ */
+/* متن بالا */
 .title {
-  font-size: 4em;
+  font-size: 3.5em;
   color: #4682B4;
   text-align: center;
-  margin-bottom: 10px; /* فاصله کمتر با کیک */
+  margin-bottom: 20px;
   line-height: 1.2;
-  position: relative;
 }
 
-/* کیک بزرگ تقریبا کل صفحه */
+/* ظرف کیک */
 .cake-container {
   position: relative;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  height: 70vh;
+  justify-content: center;
+  margin: auto;
 }
 
+/* لایه کیک */
 .cake {
-  background: #4682B4; /* آبی کیک */
+  background: #4682B4;
   border-radius: 50% / 20%;
   position: relative;
-  margin: 0;
+  margin: -20px 0; /* چسبیده روی هم */
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-/* لایه خامه‌ای آب شده */
-.cream-layer {
-  width: 90%;
-  height: 25px;
-  background: #FFF5E1; /* کرم رنگ */
-  border-radius: 50% / 50%;
+.layer-top { width: 250px; height: 150px; z-index: 3; }
+.layer-middle { width: 350px; height: 180px; z-index: 2; }
+.layer-bottom { width: 450px; height: 200px; z-index: 1; }
+
+/* خامه آب شده */
+.cream {
+  width: 100%;
+  height: 40px;
+  background: #FFF5E1;
+  border-radius: 50%;
   position: absolute;
-  top: 10px;
+  top: 0;
   box-shadow: inset 0 0 10px #fff;
-  animation: drip 3s infinite ease-in-out;
+}
+
+.cream::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  bottom: -20px;
+  width: 20px;
+  height: 40px;
+  background: #FFF5E1;
+  border-radius: 50%;
+  animation: drip 2s infinite;
 }
 
 @keyframes drip {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px) rotate(2deg); }
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.8; }
 }
 
-/* اندازه لایه‌ها بزرگ‌تر */
-.layer-top { width: 250px; height: 150px; z-index: 3; }
-.layer-middle { width: 350px; height: 180px; z-index: 2; }
-.layer-bottom { width: 500px; height: 220px; z-index: 1; }
-
-/* شمع‌ها روی کیک و زیر نوشته */
+/* شمع‌ها */
 .candles {
   position: absolute;
-  top: 40px; /* پایین‌تر از سطح لایه بالا */
+  top: 10px;
   display: flex;
   justify-content: space-between;
-  width: 200px; /* هم‌اندازه با layer-top */
+  width: 200px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .candle {
   width: 14px;
-  height: 50px;
+  height: 60px;
   background: silver;
   position: relative;
 }
@@ -92,4 +103,18 @@ body {
 @keyframes flicker {
   from { transform: scale(1); opacity: 1; }
   to { transform: scale(1.1); opacity: 0.85; }
+}
+
+/* نامه پایین صفحه */
+.letter {
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 1.5em;
+  color: #444;
+  text-align: center;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+  width: 80%;
 }
