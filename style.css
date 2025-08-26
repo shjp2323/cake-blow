@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #E6E6FA; /* یکدست یاسی کمرنگ */
+  background: #E6E6FA; /* یاسی کمرنگ */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,12 +15,12 @@ body {
   text-align: center;
   font-size: 3.5em;
   color: #4682B4;
-  margin-bottom: 15px; /* فاصله مناسب با کیک */
+  margin-bottom: 20px; /* فاصله یک سانت بیشتر با کیک */
   line-height: 1.2;
   position: relative;
 }
 
-/* شمع‌ها روی لایه بالایی و دقیقاً روی خامه */
+/* شمع‌ها */
 .candles {
   position: absolute;
   top: 12px; 
@@ -56,7 +56,7 @@ body {
   to { transform: scale(1.1); opacity: 0.85; }
 }
 
-/* ظرف کیک */
+/* کیک */
 .cake-container {
   display: flex;
   flex-direction: column-reverse;
@@ -64,17 +64,17 @@ body {
   justify-content: center;
 }
 
-/* لایه‌های کیک */
 .cake {
   position: relative;
   margin: -20px 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: #4682B4;
+  background: #6CA0DC; /* روشن‌تر و براق */
   border-radius: 50% / 20%;
 }
 
+/* لایه‌ها */
 .layer-bottom { width: 450px; height: 200px; z-index:1; }
 .layer-middle { width: 350px; height: 180px; z-index:2; }
 .layer-top    { width: 250px; height: 150px; z-index:3; }
@@ -89,40 +89,30 @@ body {
   border-radius: 50%;
 }
 
-/* قطره‌ها (تنها پایین لایه) */
+/* قطره‌ها */
 .drip {
   position: absolute;
-  width: 10px;
-  height: 20px;
+  width: 14px; /* بزرگ‌تر */
+  height: 24px; /* بزرگ‌تر */
   background: #FFF5E1;
   border-radius: 50%;
   animation: drip 2s infinite alternate;
 }
 
-.layer-bottom .drip1 { left: 20%; animation-delay: 0s; top: 30px; }
-.layer-bottom .drip2 { left: 60%; animation-delay: 0.5s; top: 30px; }
+/* موقعیت‌های قطره‌ها */
+.layer-bottom .drip:nth-child(2) { left: 15%; top: 30px; animation-delay: 0s; }
+.layer-bottom .drip:nth-child(3) { left: 40%; top: 30px; animation-delay: 0.5s; }
+.layer-bottom .drip:nth-child(4) { left: 65%; top: 30px; animation-delay: 1s; }
 
-.layer-middle .drip1 { left: 25%; animation-delay: 0.2s; top: 30px; }
-.layer-middle .drip2 { left: 55%; animation-delay: 0.7s; top: 30px; }
+.layer-middle .drip:nth-child(2) { left: 20%; top: 30px; animation-delay: 0.2s; }
+.layer-middle .drip:nth-child(3) { left: 50%; top: 30px; animation-delay: 0.7s; }
+.layer-middle .drip:nth-child(4) { left: 70%; top: 30px; animation-delay: 1.2s; }
 
-.layer-top .drip1 { left: 30%; animation-delay: 0.4s; top: 30px; }
-.layer-top .drip2 { left: 50%; animation-delay: 0.9s; top: 30px; }
+.layer-top .drip:nth-child(2) { left: 25%; top: 30px; animation-delay: 0.4s; }
+.layer-top .drip:nth-child(3) { left: 45%; top: 30px; animation-delay: 0.9s; }
+.layer-top .drip:nth-child(4) { left: 60%; top: 30px; animation-delay: 1.4s; }
 
 @keyframes drip {
   0% { transform: translateY(0); }
-  100% { transform: translateY(10px); }
-}
-
-/* پاکت نامه پایین کیک */
-.letter {
-  position: relative;
-  margin-top: 10px;
-  background: #FFF8E7;
-  border-radius: 10px;
-  width: auto;
-  padding: 15px 20px;
-  text-align: center;
-  font-size: 1.5em;
-  color: #1A237E;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  100% { transform: translateY(12px); }
 }
