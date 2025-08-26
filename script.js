@@ -1,9 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const candles = document.querySelectorAll(".cake .candle");
+  const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
+  const candles = [];
+  const numCandles = 7; // تعداد شمع‌ها
+  const radius = 90; // شعاع دایره روی کیک
+  const centerX = 125; // مرکز کیک (نصف عرض)
+  const centerY = 50;  // ارتفاع شمع‌ها روی کیک
+
+  // اضافه کردن شمع‌ها به شکل دایره
+  for (let i = 0; i < numCandles; i++) {
+    const angle = (i / numCandles) * 2 * Math.PI;
+    const x = centerX + radius * Math.cos(angle) - 6; // 6 نصف عرض شمع
+    const y = centerY + radius * Math.sin(angle) - 20; // 20 ارتفاع شمع
+
+    const candle = document.createElement("div");
+    candle.className = "candle";
+    candle.style.left = x + "px";
+    candle.style.top = y + "px";
+
+    const flame = document.createElement("div");
+    flame.className = "flame";
+    candle.appendChild(flame);
+
+    cake.appendChild(candle);
+    candles.push(candle);
+  }
 
   function updateCandleCount() {
-    const activeCandles = Array.from(candles).filter(
+    const activeCandles = candles.filter(
       (candle) => !candle.classList.contains("out")
     ).length;
     candleCountDisplay.textContent = activeCandles;
@@ -19,17 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
     analyser.getByteFrequencyData(dataArray);
 
     let sum = 0;
-    for (let i = 0; i < bufferLength; i++) {
-      sum += dataArray[i];
-    }
+    for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
     let average = sum / bufferLength;
-
     return average > 40;
   }
 
   function blowOutCandles() {
     let blownOut = 0;
-
     if (isBlowing()) {
       candles.forEach((candle) => {
         if (!candle.classList.contains("out") && Math.random() > 0.5) {
@@ -38,10 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }
-
-    if (blownOut > 0) {
-      updateCandleCount();
-    }
+    if (blownOut > 0) updateCandleCount();
   }
 
   if (navigator.mediaDevices.getUserMedia) {
