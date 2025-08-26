@@ -1,10 +1,10 @@
 const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
-const candleCount = 27;
-const spacing = 10; // فاصله بین شمع‌ها
+const candleCount = 5;
+const spacing = 25; // فاصله بین شمع‌ها
 
-// شمع‌ها به صورت ردیفی روی طبقه بالایی
+// شمع‌ها روی لایه بالایی
 for (let i = 0; i < candleCount; i++) {
     const candle = document.createElement('div');
     candle.classList.add('candle');
@@ -13,20 +13,18 @@ for (let i = 0; i < candleCount; i++) {
     flame.classList.add('flame');
     candle.appendChild(flame);
 
-    candle.style.left = `${i * spacing}px`;
-    candle.style.top = `-20px`;
-
+    candle.style.left = `${i * spacing}px`; 
     candlesContainer.appendChild(candle);
 }
 
-// مرکز‌چین کردن کل ردیف شمع‌ها
+// جای‌گذاری شمع‌ها روی طبقه بالا
 candlesContainer.style.position = "absolute";
-candlesContainer.style.top = "20px";
+candlesContainer.style.top = "-20px"; /* کمی بالای لایه بالایی */
 candlesContainer.style.left = "50%";
 candlesContainer.style.transform = "translateX(-50%)";
-candlesContainer.style.width = `${candleCount * spacing}px`;
+candlesContainer.style.width = `${(candleCount - 1) * spacing + 10}px`;
 
-// تشخیص صدا برای خاموش کردن شمع
+// خاموش شدن با فوت
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
