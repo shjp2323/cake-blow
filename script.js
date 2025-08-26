@@ -1,7 +1,7 @@
 const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
-const candleCount = 3; // 3 شمع
+const candleCount = 3; // تعداد شمع‌ها
 
 for (let i = 0; i < candleCount; i++) {
   const candle = document.createElement('div');
@@ -14,7 +14,7 @@ for (let i = 0; i < candleCount; i++) {
   candlesContainer.appendChild(candle);
 }
 
-// خاموش شدن با فوت
+// خاموش شدن شمع‌ها با فوت
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
