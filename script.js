@@ -2,9 +2,8 @@ const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
 const candleCount = 5;
-const spacing = 25; // فاصله بین شمع‌ها
 
-// شمع‌ها روی لایه بالایی
+// شمع‌ها کنار متن Happy Birthday
 for (let i = 0; i < candleCount; i++) {
     const candle = document.createElement('div');
     candle.classList.add('candle');
@@ -13,18 +12,10 @@ for (let i = 0; i < candleCount; i++) {
     flame.classList.add('flame');
     candle.appendChild(flame);
 
-    candle.style.left = `${i * spacing}px`; 
     candlesContainer.appendChild(candle);
 }
 
-// جای‌گذاری شمع‌ها روی طبقه بالا
-candlesContainer.style.position = "absolute";
-candlesContainer.style.top = "-20px"; /* کمی بالای لایه بالایی */
-candlesContainer.style.left = "50%";
-candlesContainer.style.transform = "translateX(-50%)";
-candlesContainer.style.width = `${(candleCount - 1) * spacing + 10}px`;
-
-// خاموش شدن با فوت
+// تشخیص صدا برای خاموش کردن شمع با حساسیت بالا
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
@@ -38,7 +29,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         function detectBlow() {
             analyser.getByteFrequencyData(dataArray);
             const volume = dataArray.reduce((a,b)=>a+b)/dataArray.length;
-            if(volume > 100){
+            if(volume > 40){ // 🔹 با صدای خیلی کم خاموش میشه
                 blowSound.play();
                 document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
             }
