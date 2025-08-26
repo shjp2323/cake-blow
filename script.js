@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const numCandles = 10; // تعداد شمع‌ها
   const centerX = 125; // مرکز افقی کیک
   const centerY = 40;  // ارتفاع روی سطح کیک
-  const radiusX = 110; // شعاع افقی بیضی (کشیده‌تر)
+  const radiusX = 110; // شعاع افقی بیضی کشیده
   const radiusY = 50;  // شعاع عمودی بیضی
 
   // اضافه کردن شمع‌ها روی سطح کیک به شکل بیضی کشیده
   for (let i = 0; i < numCandles; i++) {
     const angle = (i / numCandles) * 2 * Math.PI;
-    const x = centerX + radiusX * Math.cos(angle) - 6;
-    const y = centerY + radiusY * Math.sin(angle) - 20;
+    const x = centerX + radiusX * Math.cos(angle) - 6; // 6 نصف عرض شمع
+    const y = centerY + radiusY * Math.sin(angle) - 20; // روی سطح کیک
 
     const candle = document.createElement("div");
     candle.className = "candle";
@@ -72,17 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return average > 40;
   }
 
+  // خاموش کردن همه شمع‌ها وقتی فوت می‌کنیم
   function blowOutCandles() {
-    let blownOut = 0;
+    if (!analyser) return;
     if (isBlowing()) {
       candles.forEach((candle) => {
-        if (!candle.classList.contains("out") && Math.random() > 0.5) {
+        if (!candle.classList.contains("out")) {
           candle.classList.add("out");
-          blownOut++;
+          const flame = candle.querySelector(".flame");
+          if (flame) flame.style.display = "none"; // خاموش کردن شعله
         }
       });
+      updateCandleCount();
     }
-    if (blownOut > 0) updateCandleCount();
   }
 
   if (navigator.mediaDevices.getUserMedia) {
