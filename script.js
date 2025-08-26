@@ -1,9 +1,8 @@
 const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
-const candleCount = 5;
+const candleCount = 3; // تغییر تعداد شمع‌ها به 3
 
-// شمع‌ها کنار متن
 for (let i = 0; i < candleCount; i++) {
   const candle = document.createElement('div');
   candle.classList.add('candle');
@@ -29,7 +28,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       function detectBlow() {
         analyser.getByteFrequencyData(dataArray);
         const volume = dataArray.reduce((a, b) => a + b) / dataArray.length;
-        if (volume > 40) { // صدای خیلی کم هم کافی است
+        if (volume > 40) {
           blowSound.play();
           document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
         }
