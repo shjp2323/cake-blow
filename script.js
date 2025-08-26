@@ -14,7 +14,7 @@ for(let i=0;i<candleCount;i++){
   candlesContainer.appendChild(candle);
 }
 
-// خاموش شدن شمع‌ها با فوت
+// خاموش شدن شمع‌ها با فوت (صدای بلندتر)
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
@@ -28,7 +28,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       function detectBlow() {
         analyser.getByteFrequencyData(dataArray);
         const volume = dataArray.reduce((a,b) => a+b)/dataArray.length;
-        if(volume > 40){
+        if(volume > 70){ // صدای بلندتر نیاز است
           blowSound.play();
           document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
         }
