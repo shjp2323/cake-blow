@@ -1,104 +1,94 @@
-body {
-  background: linear-gradient(to top, #f0f8ff, #ffffff);
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const cake = document.querySelector(".cake");
+  const candleCountDisplay = document.getElementById("candleCount");
+  let candles = [];
+  let audioContext;
+  let analyser;
+  let microphone;
 
-.container {
-  text-align: center;
-}
+  function updateCandleCount() {
+    const activeCandles = candles.filter(
+      (candle) => !candle.classList.contains("out")
+    ).length;
+    candleCountDisplay.textContent = activeCandles;
+  }
 
-.greeting {
-  font-size: 32px;
-  font-weight: bold;
-  color: #007BFF;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
+  function addCandle(left, top) {
+    const candle = document.createElement("div");
+    candle.className = "candle";
+    candle.style.left = left + "px";
+    candle.style.top = top + "px";
 
-/* کیک */
-.cake {
-  position: relative;
-  width: 300px;
-  height: 280px;
-  margin: auto;
-}
+    const flame = document.createElement("div");
+    flame.className = "flame";
+    candle.appendChild(flame);
 
-.plate {
-  width: 360px;
-  height: 25px;
-  background: #ddd;
-  position: absolute;
-  bottom: 0;
-  left: -30px;
-  border-radius: 50%;
-  box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
-}
+    cake.appendChild(candle);
+    candles.push(candle);
+    updateCandleCount();
+  }
 
-.layer {
-  width: 240px;
-  height: 70px;
-  border-radius: 50%;
-  margin: auto;
-  position: absolute;
-  left: 30px;
-  box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15);
-}
+  // 🔥 از اول 27 شمع بساز
+  function placeCandles() {
+    const centerX = 125; // مرکز کیک (نصف عرض 250px)
+    const topY = -10; // بالای لایه
+    const radius = 80; // شعاع دایره شمع‌ها
+    const count = 27;
 
-.layer-bottom {
-  background-color: #007BFF;  /* آبی */
-  bottom: 25px;
-}
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * 2 * Math.PI;
+      const x = centerX + radius * Math.cos(angle);
+      const y = topY + radius * Math.sin(angle) * 0.3; // بیضوی بشه
+      addCandle(x, y);
+    }
+  }
 
-.layer-middle {
-  background-color: #ffffff; /* سفید */
-  bottom: 95px;
-  width: 200px;
-  height: 60px;
-  left: 50px;
-}
+  placeCandles();
 
-.layer-top {
-  background-color: #007BFF; /* آبی */
-  bottom: 155px;
-  width: 150px;
-  height: 50px;
-  left: 75px;
-}
+  function isBlowing() {
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(dataArray);
 
-/* شمع‌ها */
-.candle {
-  width: 10px;
-  height: 35px;
-  background: silver;  /* نقره‌ای */
-  position: absolute;
-  border-radius: 3px;
-  display: flex;
-  justify-content: center;
-}
+    let sum = 0;
+    for (let i = 0; i < bufferLength; i++) {
+      sum += dataArray[i];
+    }
+    let average = sum / bufferLength;
 
-.flame {
-  width: 8px;
-  height: 12px;
-  background: radial-gradient(circle, yellow 60%, orange 90%);
-  border-radius: 50%;
-  position: absolute;
-  top: -14px;
-  animation: flicker 0.2s infinite alternate;
-}
+    return average > 40;
+  }
 
-/* انیمیشن شعله */
-@keyframes flicker {
-  from { transform: scale(1,1) rotate(0deg); opacity: 1; }
-  to   { transform: scale(1.2,1.3) rotate(5deg); opacity: 0.8; }
-}
+  function blowOutCandles() {
+    let blownOut = 0;
 
-/* وقتی شمع خاموش شد */
-.candle.off .flame {
-  display: none;
-}
+    if (isBlowing()) {
+      candles.forEach((candle) => {
+        if (!candle.classList.contains("out") && Math.random() > 0.5) {
+          candle.classList.add("out");
+          blownOut++;
+        }
+      });
+    }
+
+    if (blownOut > 0) {
+      updateCandleCount();
+    }
+  }
+
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(function (stream) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioContext.createAnalyser();
+        microphone = audioContext.createMediaStreamSource(stream);
+        microphone.connect(analyser);
+        analyser.fftSize = 256;
+        setInterval(blowOutCandles, 200);
+      })
+      .catch(function (err) {
+        console.log("Unable to access microphone: " + err);
+      });
+  }
+});
