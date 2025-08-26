@@ -28,22 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCandleCount();
   }
 
-  // 🔥 از اول 27 شمع بساز
-  function placeCandles() {
-    const centerX = 125; // مرکز کیک (نصف عرض 250px)
-    const topY = -10; // بالای لایه
-    const radius = 80; // شعاع دایره شمع‌ها
-    const count = 27;
-
-    for (let i = 0; i < count; i++) {
-      const angle = (i / count) * 2 * Math.PI;
-      const x = centerX + radius * Math.cos(angle);
-      const y = topY + radius * Math.sin(angle) * 0.3; // بیضوی بشه
-      addCandle(x, y);
+  // 🕯 ۲۷ شمع روی کیک بذار
+  function addInitialCandles() {
+    const centerX = 125;
+    const topY = 10;
+    const radius = 90;
+    for (let i = 0; i < 27; i++) {
+      let angle = (i / 27) * 2 * Math.PI;
+      let left = centerX + radius * Math.cos(angle);
+      let top = topY + radius * Math.sin(angle) * 0.4;
+      addCandle(left, top);
     }
   }
-
-  placeCandles();
+  addInitialCandles();
 
   function isBlowing() {
     const bufferLength = analyser.frequencyBinCount;
@@ -90,5 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function (err) {
         console.log("Unable to access microphone: " + err);
       });
+  } else {
+    console.log("getUserMedia not supported on your browser!");
   }
 });
