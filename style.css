@@ -1,72 +1,104 @@
 body {
+  background: linear-gradient(to top, #f0f8ff, #ffffff);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f7f7f7;
-  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.greeting {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007BFF;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
 /* کیک */
 .cake {
   position: relative;
   width: 300px;
-  height: 250px;
+  height: 280px;
+  margin: auto;
 }
 
 .plate {
-  width: 340px;
-  height: 20px;
-  background: #ccc;
+  width: 360px;
+  height: 25px;
+  background: #ddd;
   position: absolute;
   bottom: 0;
-  left: -20px;
-  border-radius: 10px;
+  left: -30px;
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
 }
 
 .layer {
-  width: 220px;
-  height: 60px;
+  width: 240px;
+  height: 70px;
+  border-radius: 50%;
   margin: auto;
-  position: relative;
-  border-radius: 10px;
+  position: absolute;
+  left: 30px;
+  box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15);
 }
 
 .layer-bottom {
   background-color: #007BFF;  /* آبی */
-  top: 160px;
+  bottom: 25px;
 }
+
 .layer-middle {
-  background-color: #ffffff;  /* سفید */
-  top: 100px;
+  background-color: #ffffff; /* سفید */
+  bottom: 95px;
+  width: 200px;
+  height: 60px;
+  left: 50px;
 }
+
 .layer-top {
-  background-color: #007BFF;  /* آبی */
-  top: 40px;
+  background-color: #007BFF; /* آبی */
+  bottom: 155px;
+  width: 150px;
+  height: 50px;
+  left: 75px;
 }
 
 /* شمع‌ها */
 .candle {
   width: 10px;
-  height: 30px;
-  background-color: silver; /* نقره‌ای */
+  height: 35px;
+  background: silver;  /* نقره‌ای */
   position: absolute;
-  border-radius: 2px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
 }
 
 .flame {
-  width: 6px;
-  height: 10px;
-  background-color: yellow;
+  width: 8px;
+  height: 12px;
+  background: radial-gradient(circle, yellow 60%, orange 90%);
   border-radius: 50%;
   position: absolute;
-  top: -12px;
-  left: 2px;
+  top: -14px;
   animation: flicker 0.2s infinite alternate;
 }
 
 /* انیمیشن شعله */
 @keyframes flicker {
-  from { transform: scale(1,1); opacity: 1; }
-  to { transform: scale(1.2,1.2); opacity: 0.8; }
+  from { transform: scale(1,1) rotate(0deg); opacity: 1; }
+  to   { transform: scale(1.2,1.3) rotate(5deg); opacity: 0.8; }
+}
+
+/* وقتی شمع خاموش شد */
+.candle.off .flame {
+  display: none;
 }
