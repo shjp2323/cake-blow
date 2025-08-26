@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Dear Mohammad</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Cake</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="cake">
-    <div class="plate"></div>
-    <div class="layer layer-bottom"></div>
-    <div class="layer layer-middle"></div>
-    <div class="layer layer-top"></div>
+<div class="cake-container">
+    <div class="cake layer-bottom"></div>
+    <div class="cake layer-middle"></div>
+    <div class="cake layer-top"></div>
+</div>
 
-    <!-- ۲۷ شمع نقره‌ای آماده روی کیک -->
-    <div class="candles">
-      <!-- هر شمع با کلاس flame برای شعله -->
-      <!-- به جای تکرار دستی، توی js لوپ می‌سازیم -->
-    </div>
+<div class="candles"></div>
 
-    <h1 class="message">Happy Birthday Dear Mohammad 🎉</h1>
-  </div>
+<audio id="blowSound" src="blow.mp3"></audio>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
