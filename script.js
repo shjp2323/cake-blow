@@ -3,15 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const candleCountDisplay = document.getElementById("candleCount");
   const candles = [];
   const numCandles = 10; // تعداد شمع‌ها
-  const radius = 90; // شعاع دایره روی کیک
-  const centerX = 125; // مرکز کیک (نصف عرض)
-  const centerY = 50;  // ارتفاع شمع‌ها روی کیک
+  const cakeTopY = 20; // ارتفاع سطح کیک (لایه بالایی)
+  const cakeCenterX = 125; // مرکز کیک (نصف عرض)
+  const cakeRadius = 90; // شعاع دایره روی سطح کیک
 
-  // اضافه کردن شمع‌ها به شکل دایره
+  // اضافه کردن شمع‌ها به شکل دایره روی سطح کیک
   for (let i = 0; i < numCandles; i++) {
     const angle = (i / numCandles) * 2 * Math.PI;
-    const x = centerX + radius * Math.cos(angle) - 6; // 6 نصف عرض شمع
-    const y = centerY + radius * Math.sin(angle) - 20; // 20 ارتفاع شمع
+    const x = cakeCenterX + cakeRadius * Math.cos(angle) - 6; // 6 نصف عرض شمع
+    const y = cakeTopY + cakeRadius * Math.sin(angle) - 20; // روی سطح کیک
 
     const candle = document.createElement("div");
     candle.className = "candle";
@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   updateCandleCount();
 
-  // اضافه کردن متن پایین کیک
+  // اضافه کردن متن Blow! پایین کیک
   const blowText = document.createElement("div");
   blowText.textContent = "Blow!";
   blowText.style.textAlign = "center";
   blowText.style.color = "black";
   blowText.style.fontFamily = "Arial, sans-serif";
-  blowText.style.fontSize = "16px"; // کوچک نوشته شود
-  blowText.style.marginTop = "2cm"; // فاصله 2 سانت از کیک
+  blowText.style.fontSize = "32px"; // بزرگ‌تر
+  blowText.style.marginTop = "4cm"; // فاصله چند سانت پایین‌تر از کیک
   cake.parentNode.insertBefore(blowText, cake.nextSibling);
 
   // میکروفون برای فوت شمع
