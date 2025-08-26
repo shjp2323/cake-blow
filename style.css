@@ -1,10 +1,19 @@
 body {
-    background: linear-gradient(to bottom, #87CEFA, #fff);
+    background: #ffffff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 2em;
+    color: #1E90FF;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .cake-stack {
@@ -15,51 +24,51 @@ body {
 }
 
 .cake {
-    background: linear-gradient(to top, #1E90FF, #ADD8E6);
+    background: #4682B4; /* آبی مات */
     border-radius: 50% / 20%;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-    margin: 5px 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+    margin: 0;
     position: relative;
 }
 
-.layer-bottom {
-    width: 250px;
-    height: 100px;
-    z-index: 1;
+.layer-top {
+    width: 120px;
+    height: 60px;
+    z-index: 3;
 }
 .layer-middle {
     width: 180px;
     height: 80px;
     z-index: 2;
 }
-.layer-top {
-    width: 120px;
-    height: 60px;
-    z-index: 3;
+.layer-bottom {
+    width: 250px;
+    height: 100px;
+    z-index: 1;
 }
 
 .candle {
-    width: 8px;
-    height: 35px;
+    width: 10px;
+    height: 40px;
     background: silver;
     border-radius: 2px;
     position: absolute;
-    top: -35px;
+    top: -40px;
 }
 
 .flame {
-    width: 12px;
+    width: 14px;
     height: 18px;
-    background: radial-gradient(circle, yellow, orange, red);
+    background: radial-gradient(circle, #FFFFE0, #FFD700); /* زرد کمرنگ */
     border-radius: 50%;
     position: absolute;
-    top: -20px;
+    top: -22px;
     left: -2px;
-    animation: flicker 0.2s infinite alternate;
+    animation: flicker 0.25s infinite alternate;
 }
 
 @keyframes flicker {
-    0% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.1) rotate(2deg); }
-    100% { transform: scale(1) rotate(-2deg); }
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
+    100% { transform: scale(1) rotate(-2deg); opacity: 1; }
 }
