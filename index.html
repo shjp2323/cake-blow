@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Birthday Cake 🎂</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-  </head>
-  <body>
-    <h2 class="greeting">Happy Birthday Dear Mohammad 🎉</h2>
-    <div class="candle-count-display">
-      Candles on the Cake: <span id="candleCount">27</span>
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Dear Mohammad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cake">
+    <div class="plate"></div>
+    <div class="layer layer-bottom"></div>
+    <div class="layer layer-middle"></div>
+    <div class="layer layer-top"></div>
+
+    <!-- ۲۷ شمع نقره‌ای آماده روی کیک -->
+    <div class="candles">
+      <!-- هر شمع با کلاس flame برای شعله -->
+      <!-- به جای تکرار دستی، توی js لوپ می‌سازیم -->
     </div>
-    <div class="cake">
-      <div class="plate"></div>
-      <div class="layer layer-bottom"></div>
-      <div class="layer layer-middle"></div>
-      <div class="layer layer-top"></div>
-      <div class="icing"></div>
-      <div class="drip drip1"></div>
-      <div class="drip drip2"></div>
-      <div class="drip drip3"></div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+
+    <h1 class="message">Happy Birthday Dear Mohammad 🎉</h1>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
