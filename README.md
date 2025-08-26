@@ -16,7 +16,7 @@ The cake design was adapted from Fazlur Rahman's creation on CodePen ([View Orig
 
 ## Features
 
-- **Interactive Cake**: Click to add candles 🕯️.
+- **Interactive Cake**: put 27 candles on cake
 - **Microphone Integration**: Blow into your mic to extinguish candles 🎤.
 - **Candle Count**: Watch the candle count change dynamically 🔢.
 - **Engaging UI**: Engage with a user-friendly interface.
