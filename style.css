@@ -1,16 +1,17 @@
- body {
-  background: #fff;
+body {
+  background: #E6E6FA; /* یاسی خیلی کمرنگ */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   font-family: Arial, sans-serif;
+  margin: 0;
 }
 
 /* متن بالا */
 .title {
-  font-size: 2em;
+  font-size: 3em; /* بزرگ‌تر */
   color: #4682B4;
   margin-bottom: 40px;
   text-align: center;
@@ -26,14 +27,28 @@
 }
 
 .cake {
-  background: #4682B4;
+  background: #4682B4; /* آبی کیک */
   border-radius: 50% / 20%;
   box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-  margin: 0; /* فاصله بین لایه‌ها صفر */
+  margin: 0; /* هیچ فاصله‌ای بین لایه‌ها نباشد */
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
+/* لایه خامه‌ای روی هر لایه */
+.cream-layer {
+  width: 90%;
+  height: 15px;
+  background: #FFF5E1; /* رنگ کرم */
+  border-radius: 50% / 50%;
+  position: absolute;
+  top: 10px;
+}
+
+/* اندازه و لایه‌ها */
 .layer-top { width: 120px; height: 80px; z-index: 3; }
 .layer-middle { width: 180px; height: 100px; z-index: 2; }
 .layer-bottom { width: 240px; height: 120px; z-index: 1; }
@@ -41,7 +56,7 @@
 /* شمع‌ها */
 .candles {
   position: absolute;
-  top: -40px; /* دقیقاً روی لایه بالا */
+  top: -50px; /* دقیقاً روی لایه بالا */
   display: flex;
   justify-content: space-between;
   width: 120px; /* هم‌اندازه با layer-top */
