@@ -2,19 +2,10 @@ const candlesContainer = document.querySelector('.candles');
 const blowSound = document.getElementById('blowSound');
 
 const candleCount = 27;
+const spacing = 10; // فاصله بین شمع‌ها
 
-// موقعیت‌های شمع‌ها روی کیک (دایره‌ای)
-const cakeTopWidth = 100;
-const cakeTopHeight = 50;
-const centerX = window.innerWidth / 2;
-const centerY = window.innerHeight / 2 - 150; // تقریبی بالای کیک
-
-for(let i = 0; i < candleCount; i++){
-    const angle = (i / candleCount) * 2 * Math.PI;
-    const radius = 50; // شعاع چرخش شمع‌ها روی لایه بالا
-    const x = centerX + radius * Math.cos(angle) - 3; // 3 نصف عرض شمع
-    const y = centerY + radius * Math.sin(angle) - 30; // 30 ارتفاع شمع
-
+// شمع‌ها به صورت ردیفی روی طبقه بالایی
+for (let i = 0; i < candleCount; i++) {
     const candle = document.createElement('div');
     candle.classList.add('candle');
 
@@ -22,11 +13,18 @@ for(let i = 0; i < candleCount; i++){
     flame.classList.add('flame');
     candle.appendChild(flame);
 
-    candle.style.left = `${x}px`;
-    candle.style.top = `${y}px`;
+    candle.style.left = `${i * spacing}px`;
+    candle.style.top = `-20px`;
 
     candlesContainer.appendChild(candle);
 }
+
+// مرکز‌چین کردن کل ردیف شمع‌ها
+candlesContainer.style.position = "absolute";
+candlesContainer.style.top = "20px";
+candlesContainer.style.left = "50%";
+candlesContainer.style.transform = "translateX(-50%)";
+candlesContainer.style.width = `${candleCount * spacing}px`;
 
 // تشخیص صدا برای خاموش کردن شمع
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -42,7 +40,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         function detectBlow() {
             analyser.getByteFrequencyData(dataArray);
             const volume = dataArray.reduce((a,b)=>a+b)/dataArray.length;
-            if(volume > 100){ // اگر صدا بالاتر از حد بود
+            if(volume > 100){
                 blowSound.play();
                 document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
             }
