@@ -1,17 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #E6E6FA 0%, #F0E6FA 50%, #D8C6F0 100%); /* پس‌زمینه رویایی آبرنگی */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
 /* متن بالای کیک */
 .title {
   text-align: center;
   font-size: 3.5em;
   color: #4682B4;
-  margin-bottom: 0px; /* فاصله خیلی کم با کیک */
-  line-height: 1.1; /* نزدیک‌تر شدن خطوط به هم */
+  margin-bottom: 0px; /* فاصله کم با کیک */
+  line-height: 1.1;
   position: relative;
 }
 
-/* شمع‌ها روی کیک بالایی و کمی روی خامه */
+/* شمع‌ها روی لایه بالایی، کمی پایین‌تر از متن و روی سطح خامه */
 .candles {
   position: absolute;
-  top: 18px; /* روی سطح کیک بالایی، پایین‌تر از متن ولی از خامه پایین‌تر نرود */
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -19,11 +29,102 @@
   width: 220px;
 }
 
-/* شمع‌ها حالت استوانه‌ای */
 .candle {
   width: 14px;
   height: 60px;
   background: silver;
-  border-radius: 7px; /* حالت استوانه‌ای */
+  border-radius: 7px; /* استوانه‌ای */
   position: relative;
+}
+
+.flame {
+  width: 16px;
+  height: 20px;
+  background: radial-gradient(circle, #FFFACD, #FFDAB9);
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+  left: -1px;
+  animation: flicker 0.25s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.1); opacity: 0.85; }
+}
+
+/* ظرف کیک */
+.cake-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* لایه‌های کیک */
+.cake {
+  position: relative;
+  margin: -20px 0; /* روی هم چسبیده */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #4682B4;
+  border-radius: 50% / 20%;
+}
+
+/* اندازه لایه‌ها */
+.layer-bottom { width: 450px; height: 200px; z-index:1; }
+.layer-middle { width: 350px; height: 180px; z-index:2; }
+.layer-top    { width: 250px; height: 150px; z-index:3; }
+
+/* خامه متحرک و قطره‌ای */
+.cream {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background: #FFF5E1; /* کرم رنگ */
+  border-radius: 50%;
+  overflow: visible;
+  animation: drip 3s infinite alternate;
+}
+
+.cream::before, .cream::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: #FFF5E1;
+  border-radius: 50%;
+  animation: drip 3s infinite alternate;
+}
+
+.layer-bottom .cream::before { left: 20%; animation-delay: 0s; }
+.layer-bottom .cream::after { left: 60%; animation-delay: 0.5s; }
+
+.layer-middle .cream::before { left: 25%; animation-delay: 0.2s; }
+.layer-middle .cream::after { left: 55%; animation-delay: 0.7s; }
+
+.layer-top .cream::before { left: 30%; animation-delay: 0.4s; }
+.layer-top .cream::after { left: 50%; animation-delay: 0.9s; }
+
+/* حرکت قطره‌ها (تنها پایین لایه خودشان) */
+@keyframes drip {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}
+
+/* پاکت نامه پایین صفحه */
+.letter {
+  position: relative;
+  margin-top: 20px; /* نزدیک‌تر به کیک */
+  background: #FFF8E7; /* شیری */
+  border-radius: 10px;
+  width: auto; /* اندازه همان متن */
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 1.5em;
+  color: #1A237E; /* آبی سورمه‌ای */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
