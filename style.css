@@ -1,5 +1,5 @@
 body {
-  background: #E6E6FA; /* یاسی خیلی کمرنگ */
+  background: #E6E6FA; /* یاسی کمرنگ */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,75 +9,42 @@ body {
   margin: 0;
 }
 
-/* متن بالا */
+/* متن بالا دوخطی و بزرگ */
 .title {
-  font-size: 3em; /* بزرگ‌تر */
+  font-size: 4em;
   color: #4682B4;
-  margin-bottom: 40px;
   text-align: center;
+  margin-bottom: 20px;
   position: relative;
+  line-height: 1.2;
 }
 
-/* کیک */
-.cake-container {
-  position: relative;
-  display: flex;
-  flex-direction: column-reverse; /* پایین‌ترین لایه در پایین */
-  align-items: center;
-}
-
-.cake {
-  background: #4682B4; /* آبی کیک */
-  border-radius: 50% / 20%;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-  margin: 0; /* هیچ فاصله‌ای بین لایه‌ها نباشد */
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* لایه خامه‌ای روی هر لایه */
-.cream-layer {
-  width: 90%;
-  height: 15px;
-  background: #FFF5E1; /* رنگ کرم */
-  border-radius: 50% / 50%;
-  position: absolute;
-  top: 10px;
-}
-
-/* اندازه و لایه‌ها */
-.layer-top { width: 120px; height: 80px; z-index: 3; }
-.layer-middle { width: 180px; height: 100px; z-index: 2; }
-.layer-bottom { width: 240px; height: 120px; z-index: 1; }
-
-/* شمع‌ها */
+/* شمع‌ها روی لایه بالایی */
 .candles {
   position: absolute;
-  top: -50px; /* دقیقاً روی لایه بالا */
+  top: -60px; /* روی لایه بالایی */
   display: flex;
   justify-content: space-between;
-  width: 120px; /* هم‌اندازه با layer-top */
+  width: 200px; /* هم‌اندازه با layer-top */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .candle {
-  width: 10px;
-  height: 40px;
+  width: 14px;
+  height: 50px;
   background: silver;
   position: relative;
-  display: inline-block;
 }
 
 .flame {
-  width: 14px;
-  height: 18px;
+  width: 16px;
+  height: 20px;
   background: radial-gradient(circle, #FFFACD, #FFDAB9);
   border-radius: 50%;
   position: absolute;
-  top: -22px;
-  left: -2px;
+  top: -25px;
+  left: -1px;
   animation: flicker 0.25s infinite alternate;
 }
 
@@ -85,3 +52,37 @@ body {
   from { transform: scale(1); opacity: 1; }
   to { transform: scale(1.1); opacity: 0.85; }
 }
+
+/* کیک بزرگ تقریبا کل صفحه */
+.cake-container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 70vh;
+}
+
+.cake {
+  background: #4682B4; /* آبی */
+  border-radius: 50% / 20%;
+  position: relative;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* لایه خامه‌ای */
+.cream-layer {
+  width: 90%;
+  height: 20px;
+  background: #FFF5E1; /* کرم رنگ */
+  border-radius: 50% / 50%;
+  position: absolute;
+  top: 10px;
+}
+
+/* اندازه لایه‌ها بزرگ‌تر */
+.layer-top { width: 250px; height: 150px; z-index: 3; }
+.layer-middle { width: 350px; height: 180px; z-index: 2; }
+.layer-bottom { width: 500px; height: 220px; z-index: 1; }
